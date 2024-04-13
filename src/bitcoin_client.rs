@@ -7,7 +7,7 @@ pub fn generate_wallet() {
     
     let (secret_key, public_key) = elliptic_curve_fn.generate_keypair(&mut rand::thread_rng());
     let keypair = Keypair::from_secret_key(&elliptic_curve_fn, &secret_key);
-    let (x_only_public_key, parity) = XOnlyPublicKey::from_keypair(&keypair);
+    let (x_only_public_key, _parity) = XOnlyPublicKey::from_keypair(&keypair);
     let tap_address = Address::p2tr(&elliptic_curve_fn, x_only_public_key, None, network);
     let p2wpkh_address = Address::p2wpkh(&bitcoin::CompressedPublicKey(public_key), network);
 
